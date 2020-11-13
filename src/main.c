@@ -1,28 +1,35 @@
-// 07.11.2020
-// main.c for Coding Challenge 1 in the ESPL git-tutorial
+// 07.11.2020, 13.11.2020
+// main.c for Coding Challenge 1, 2, 3 in the ESPL git-tutorial
 
 #include <stdio.h>
 #include "espl_lib.h"
 
 int main(){
     unsigned int number = 0;
-    int counter = 0;
-    char* ret_string;
+    char* ret_string = NULL;
+    char con;
 
-    // Eingabe ent
-    printf("Enter a number between 0 and 9: ");
-    scanf("%i", &number);
+again:
+    // Eingabe entgegennehmen
+    printf("Enter any positive integer number: ");
+    scanf("%u", &number);
 
+    // Eingabe umwandeln in String
     ret_string = num_to_words(number);
 
-    while(ret_string != NULL){
-        printf("%c", *(ret_string + counter));
-        counter++;
+    // String ausgeben
+    while(*ret_string){
+        printf("%c", *ret_string);
+        ret_string++;
     }
     printf("\n");
 
-    //printf("Hello ESPL\n");
-    //printf("This is a new print.");
+    // Weitermachen?
+    printf("Thank you. If you wish to continue with another number, enter 'c'. If you wish to exit, enter any other character: ");
+    scanf(" %c", &con);
 
+    if(con == 'c'){
+        goto again;
+    }
     return 0;
 }
